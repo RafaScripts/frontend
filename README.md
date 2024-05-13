@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Front - SoGame - Desafio soil
 
-## Getting Started
+Front construido para o desafio da soil, com o intuito de criar um sistema de cadastro de jogos e usuários.
 
-First, run the development server:
+## Tecnologias utilizadas
+- Next.js
+- NextAuth.js
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Instalação
+para executar o projeto é recomendavel ter o node instalado na máquina.
+
+### 1. Instalação e execução
+Clone o projeto do github
+
+Entre na pasta do projeto
+
+Instale as dependencias
+``` bash
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Rode o projeto
+``` bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Instalação e execução com docker
+Clone o projeto do github
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Entre na pasta do projeto
 
-## Learn More
+execute o comando a baixo para criar a subrede do docker para o projeto
+``` bash
+docker network create --driver bridge --subnet 172.20.0.0/16 soil-net
+```
 
-To learn more about Next.js, take a look at the following resources:
+agora temos 2 opções para roda o projeto, a primeira ira mostrar todos os logs do projeto e a segunda ira rodar em segundo plano.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Para rodar o projeto com logs
+``` bash
+docker compose up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Para rodar o projeto em segundo plano
+``` bash
+docker compose up -d
+```
 
-## Deploy on Vercel
+## Acesso
+Para acessar o projeto basta acessar o endereço http://localhost:3001/signin
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+rode `docker compose down` para parar o projeto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### license
+[MIT](https://choosealicense.com/licenses/mit/)
