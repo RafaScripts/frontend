@@ -2,6 +2,7 @@
 import NextAuth, {NextAuthOptions} from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 import Backend from '@/app/api/controllers';
+import ApiCalls from '@/app/api/api_instance';
 
 
 const nextAuthOptions:NextAuthOptions = {
@@ -14,11 +15,11 @@ const nextAuthOptions:NextAuthOptions = {
       },
 
         async authorize(credentials: any, req: any) {
-            const response:any = await Backend.signin(credentials.email, credentials.password);
+            const response:any = await ApiCalls.signIn(credentials.email, credentials.password);
 
             if(response.success){
-                const { user, token } = response.data;
-                const data:any =  { name: user.name, email: user.email, picture: null, sub: user.id, user, token };
+                const { user, session } = response.data;
+                const data:any =  { name: 'admin', email: user.email, picture: null, sub: user.id, user, token: session.access_token };
 
                 return data;
             }else{
