@@ -20,22 +20,8 @@ jobs:
           name: Prebuild
           command: docker-compose build
 
-  deploy:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 20.10.7
-      - run:
-          name: Deploy
-          command: docker-compose up -d
-
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - prebuild
-      - deploy:
-          requires:
-            - prebuild
