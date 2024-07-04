@@ -7,8 +7,8 @@ orbs:
 
 jobs:
   prebuild:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - setup_remote_docker:
@@ -18,8 +18,8 @@ jobs:
           command: docker-compose build
 
   deploy:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - setup_remote_docker:
