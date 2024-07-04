@@ -8,13 +8,13 @@ jobs:
     executor: ubuntu-2004:202010-01
     steps:
       - run:
-          name: build-image
+          name: prepare-image
           command: docker compose build
   deploy:
     executor: ubuntu-2004:202010-01
     steps:
       - run:
-          name: deploy-image
+          name: send-image
           command: docker compose up -d
 workflows:
   build:
