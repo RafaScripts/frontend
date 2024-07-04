@@ -5,17 +5,12 @@ orbs:
   node: circleci/node@5
 jobs:
   prebuild:
-    executor: ubuntu-2004:202010-01
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
-      - run:
-          name: prepare-image
+      - build:
+          name: Prebuild
           command: docker compose build
-  deploy:
-    executor: ubuntu-2004:202010-01
-    steps:
-      - run:
-          name: send-image
-          command: docker compose up -d
 workflows:
   build:
     jobs:
