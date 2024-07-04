@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   node: circleci/node@5
 jobs:
-  step1:
+  prebuild:
     executor: ubuntu-2004:202010-01
     steps:
       - run:
@@ -19,10 +19,8 @@ jobs:
 workflows:
   build:
     jobs:
-      - step1
-      - deploy:
-          requires:
-            - step1
+      - prebuild
+      - deploy
     # - deploy:
     #     requires:
     #       - build-node
