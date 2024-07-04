@@ -14,6 +14,9 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
       - run:
+          name: network
+          command: docker network create --driver bridge --subnet 172.20.0.0/16 soil-net
+      - run:
           name: Prebuild
           command: docker-compose build
 
