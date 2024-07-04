@@ -16,11 +16,11 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: pnpm
+          pkg-manager: yarn
       - run:
-          command: pnpm build
+          command: yarn build
       - run:
-          command: pnpm start
+          command: yarn start
           #deploy:
     # This is an example deploy job, not actually used by the workflow
     #docker:
