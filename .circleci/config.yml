@@ -5,36 +5,24 @@ orbs:
   node: circleci/node@5
 jobs:
   step1:
-    executor: node/default
+    executor: ubuntu-2004:202010-01
     steps:
       - run:
-          name: echo
-          command: echo "hello world"
-  build-node:
-    # Build node project
-    executor: node/default
+          name: build-image
+          command: docker compose build
+  deploy:
+    executor: ubuntu-2004:202010-01
     steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn build
-      - run:
-          command: yarn start
-          #deploy:
-    # This is an example deploy job, not actually used by the workflow
-    #docker:
-      #- image: cimg/base:stable
-    #steps:
-      # Replace this with steps to deploy to users
-      #- run:
-          #name: deploy
-          #command: '#e.g. ./deploy.sh'
+          name: deploy-image
+          command: docker compose up -d
 workflows:
   build:
     jobs:
       - step1
-      - build-node
+      - deploy:
+          requires:
+            - step1
     # - deploy:
     #     requires:
     #       - build-node
